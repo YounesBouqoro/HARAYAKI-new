@@ -9,6 +9,7 @@ window.HARAYAKI_CONTENT = {
     logoLight: "assets/images/logo-light.png",
     logoDark: "assets/images/logo-dark.png",
     heroVideo: "assets/videos/hero.mp4",
+    heroVideoMobile: "assets/videos/hero-mobile.mp4",
     heroPoster: "assets/images/hero-poster.jpg",
     email: "hello@harayaki.de",
     phone: "+49 000 000000",

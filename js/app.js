@@ -21,14 +21,14 @@
   const footerLogo = $("#footer-logo");
   const heroVideo = $("#hero-video");
   const heroVideoSource = $("#hero-video-source");
+  const heroVideoMobileSource = $("#hero-video-source-mobile");
 
   if (headerLogo) headerLogo.src = content.brand.logoLight;
   if (footerLogo) footerLogo.src = content.brand.logoDark;
   if (heroVideo) heroVideo.poster = content.brand.heroPoster;
-  if (heroVideoSource) {
-    heroVideoSource.src = content.brand.heroVideo;
-    heroVideo?.load();
-  }
+  if (heroVideoMobileSource) heroVideoMobileSource.src = content.brand.heroVideoMobile;
+  if (heroVideoSource) heroVideoSource.src = content.brand.heroVideo;
+  if (heroVideoMobileSource || heroVideoSource) heroVideo?.load();
 
   const emailLink = $("#contact-email-link");
   const phone = $("#contact-phone");
