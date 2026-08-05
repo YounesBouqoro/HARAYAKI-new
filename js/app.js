@@ -218,6 +218,56 @@
 
   $$("[data-open-menu]").forEach((button) => button.addEventListener("click", () => openModal(menuModal)));
 
+  // Rocket machine gallery: desktop grid, mobile carousel
+  const rocketCarousel = $("[data-rocket-carousel]");
+  const rocketTrack = $("[data-rocket-track]", rocketCarousel || document);
+  const rocketSlides = $$(".rocket-slide", rocketCarousel || document);
+  const rocketDots = $$("[data-rocket-dot]", rocketCarousel || document);
+  let activeRocketSlide = 0;
+  let rocketScrollFrame = null;
+
+  $$(".rocket-image", rocketCarousel || document).forEach((image) => {
+    const media = image.closest(".rocket-media");
+    const updateImageState = () => media?.classList.toggle("is-missing", !image.naturalWidth);
+    image.addEventListener("load", updateImageState);
+    image.addEventListener("error", updateImageState);
+    if (image.complete) updateImageState();
+  });
+
+  const updateRocketCarousel = (index) => {
+    if (!rocketSlides.length) return;
+    activeRocketSlide = (index + rocketSlides.length) % rocketSlides.length;
+    rocketDots.forEach((dot, dotIndex) => dot.setAttribute("aria-current", String(dotIndex === activeRocketSlide)));
+  };
+
+  const showRocketSlide = (index) => {
+    if (!rocketTrack || !rocketSlides.length) return;
+    updateRocketCarousel(index);
+    rocketTrack.scrollTo({ left: rocketSlides[activeRocketSlide].offsetLeft - rocketTrack.offsetLeft, behavior: "smooth" });
+  };
+
+  $("[data-rocket-prev]", rocketCarousel || document)?.addEventListener("click", () => showRocketSlide(activeRocketSlide - 1));
+  $("[data-rocket-next]", rocketCarousel || document)?.addEventListener("click", () => showRocketSlide(activeRocketSlide + 1));
+  rocketDots.forEach((dot) => dot.addEventListener("click", () => showRocketSlide(Number(dot.dataset.rocketDot))));
+
+  rocketTrack?.addEventListener("keydown", (event) => {
+    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+    event.preventDefault();
+    showRocketSlide(activeRocketSlide + (event.key === "ArrowRight" ? 1 : -1));
+  });
+
+  rocketTrack?.addEventListener("scroll", () => {
+    if (rocketScrollFrame) cancelAnimationFrame(rocketScrollFrame);
+    rocketScrollFrame = requestAnimationFrame(() => {
+      const trackLeft = rocketTrack.getBoundingClientRect().left;
+      const closestIndex = rocketSlides.reduce((closest, slide, index) => {
+        const distance = Math.abs(slide.getBoundingClientRect().left - trackLeft);
+        return distance < closest.distance ? { index, distance } : closest;
+      }, { index: 0, distance: Infinity }).index;
+      updateRocketCarousel(closestIndex);
+    });
+  }, { passive: true });
+
   // Contact form: endpoint or mailto fallback
   const contactForm = $("#contact-form");
   const formStatus = $("#form-status");
