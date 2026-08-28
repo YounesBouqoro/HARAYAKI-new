@@ -1,4 +1,19 @@
 (() => {
+  const extrasGrid = document.querySelector('#extras .product-grid');
+  if (extrasGrid) {
+    extrasGrid.insertAdjacentHTML('beforeend', `
+      <button class="product-card" data-name="Waffel" data-price="2.00" data-icon="🧇" type="button">
+        <span class="product-icon">🧇</span><span class="product-name">Waffel</span><span class="product-price">2,00 €</span>
+      </button>
+      <button class="product-card" data-name="Brötchen" data-price="3.00" data-icon="🥖" type="button">
+        <span class="product-icon">🥖</span><span class="product-name">Brötchen</span><span class="product-price">3,00 €</span>
+      </button>
+      <button class="product-card" data-name="Banane" data-price="1.00" data-icon="🍌" type="button">
+        <span class="product-icon">🍌</span><span class="product-name">Banane</span><span class="product-price">1,00 €</span>
+      </button>
+    `);
+  }
+
   const state = {
     items: new Map(),
     history: []
