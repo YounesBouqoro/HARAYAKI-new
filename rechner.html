@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#111820">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Harayaki Rechner">
+  <title>Harayaki Schnellrechner</title>
+  <link rel="stylesheet" href="css/rechner.css">
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">HARAYAKI</p>
+        <h1>Schnellrechner</h1>
+      </div>
+      <button class="reset-btn" id="resetBtn" type="button" aria-label="Alles löschen">Neu</button>
+    </header>
+
+    <section class="cart-card" aria-live="polite">
+      <div class="cart-topline">
+        <div>
+          <span class="cart-label">Aktuelle Bestellung</span>
+          <strong id="itemCount">0 Artikel</strong>
+        </div>
+        <button id="undoBtn" class="text-btn" type="button" disabled>↶ Rückgängig</button>
+      </div>
+      <div id="cartItems" class="cart-items">
+        <p class="empty-state">Produkt antippen – der Gesamtpreis wird automatisch berechnet.</p>
+      </div>
+    </section>
+
+    <nav class="category-tabs" aria-label="Produktkategorien">
+      <button class="tab is-active" data-target="matcha" type="button">🍵 Matcha</button>
+      <button class="tab" data-target="hot" type="button">☕ Hot Coffee</button>
+      <button class="tab" data-target="iced" type="button">🧊 Iced</button>
+      <button class="tab" data-target="shakes" type="button">🥤 Shakes</button>
+      <button class="tab" data-target="extras" type="button">＋ Extras</button>
+    </nav>
+
+    <section class="menu-section" id="matcha">
+      <div class="section-heading">
+        <h2>Matcha</h2>
+        <span>je 8,00 €</span>
+      </div>
+      <div class="product-grid product-grid--matcha">
+        <button class="product-card" data-name="Strawberry Iced Matcha" data-price="8.00" data-icon="🍓" type="button">
+          <span class="product-icon">🍓</span><span class="product-name">Strawberry<br>Iced Matcha</span><span class="product-price">8,00 €</span>
+        </button>
+        <button class="product-card" data-name="Yuzu Iced Matcha" data-price="8.00" data-icon="🍋" type="button">
+          <span class="product-icon">🍋</span><span class="product-name">Yuzu<br>Iced Matcha</span><span class="product-price">8,00 €</span>
+        </button>
+        <button class="product-card" data-name="Mango Iced Matcha" data-price="8.00" data-icon="🥭" type="button">
+          <span class="product-icon">🥭</span><span class="product-name">Mango<br>Iced Matcha</span><span class="product-price">8,00 €</span>
+        </button>
+        <button class="product-card" data-name="Litschi Iced Matcha" data-price="8.00" data-icon="🌸" type="button">
+          <span class="product-icon">🌸</span><span class="product-name">Litschi<br>Iced Matcha</span><span class="product-price">8,00 €</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="menu-section" id="hot">
+      <div class="section-heading">
+        <h2>Hot Coffee</h2>
+        <span>Small / Large</span>
+      </div>
+      <div class="hot-list">
+        <article class="size-card">
+          <div><span class="size-icon">☕</span><strong>Espresso / Doppio</strong></div>
+          <div class="size-actions">
+            <button data-name="Espresso / Doppio · Small" data-price="3.50" data-icon="☕" type="button"><span>S</span>3,50 €</button>
+            <button data-name="Espresso / Doppio · Large" data-price="4.90" data-icon="☕" type="button"><span>L</span>4,90 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">🥛</span><strong>Latte Macchiato</strong></div>
+          <div class="size-actions">
+            <button data-name="Latte Macchiato · Small" data-price="4.90" data-icon="🥛" type="button"><span>S</span>4,90 €</button>
+            <button data-name="Latte Macchiato · Large" data-price="6.40" data-icon="🥛" type="button"><span>L</span>6,40 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">☕</span><strong>Cappuccino</strong></div>
+          <div class="size-actions">
+            <button data-name="Cappuccino · Small" data-price="4.90" data-icon="☕" type="button"><span>S</span>4,90 €</button>
+            <button data-name="Cappuccino · Large" data-price="6.40" data-icon="☕" type="button"><span>L</span>6,40 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">☕</span><strong>Flat White</strong></div>
+          <div class="size-actions">
+            <button data-name="Flat White · Small" data-price="4.90" data-icon="☕" type="button"><span>S</span>4,90 €</button>
+            <button data-name="Flat White · Large" data-price="6.40" data-icon="☕" type="button"><span>L</span>6,40 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">☕</span><strong>Americano</strong></div>
+          <div class="size-actions">
+            <button data-name="Americano · Small" data-price="4.00" data-icon="☕" type="button"><span>S</span>4,00 €</button>
+            <button data-name="Americano · Large" data-price="5.40" data-icon="☕" type="button"><span>L</span>5,40 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">🍫</span><strong>Chocolato</strong></div>
+          <div class="size-actions">
+            <button data-name="Chocolato · Small" data-price="4.00" data-icon="🍫" type="button"><span>S</span>4,00 €</button>
+            <button data-name="Chocolato · Large" data-price="5.40" data-icon="🍫" type="button"><span>L</span>5,40 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">🍵</span><strong>Matcha Latte</strong></div>
+          <div class="size-actions">
+            <button data-name="Matcha Latte · Small" data-price="5.00" data-icon="🍵" type="button"><span>S</span>5,00 €</button>
+            <button data-name="Matcha Latte · Large" data-price="6.50" data-icon="🍵" type="button"><span>L</span>6,50 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">🫖</span><strong>Chai Latte</strong></div>
+          <div class="size-actions">
+            <button data-name="Chai Latte · Small" data-price="5.00" data-icon="🫖" type="button"><span>S</span>5,00 €</button>
+            <button data-name="Chai Latte · Large" data-price="6.50" data-icon="🫖" type="button"><span>L</span>6,50 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">✨</span><strong>Golden Milk</strong></div>
+          <div class="size-actions">
+            <button data-name="Golden Milk · Small" data-price="5.00" data-icon="✨" type="button"><span>S</span>5,00 €</button>
+            <button data-name="Golden Milk · Large" data-price="6.50" data-icon="✨" type="button"><span>L</span>6,50 €</button>
+          </div>
+        </article>
+        <article class="size-card">
+          <div><span class="size-icon">🫖</span><strong>Tee</strong></div>
+          <div class="size-actions">
+            <button data-name="Tee · Small" data-price="3.50" data-icon="🫖" type="button"><span>S</span>3,50 €</button>
+            <button data-name="Tee · Large" data-price="4.90" data-icon="🫖" type="button"><span>L</span>4,90 €</button>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="menu-section" id="iced">
+      <div class="section-heading"><h2>Iced Drinks</h2><span>6,00 €</span></div>
+      <div class="product-grid">
+        <button class="product-card" data-name="Iced Macchiato" data-price="6.00" data-icon="🧊" type="button">
+          <span class="product-icon">🧊</span><span class="product-name">Iced<br>Macchiato</span><span class="product-price">6,00 €</span>
+        </button>
+        <button class="product-card" data-name="Korean Iced Americano" data-price="6.00" data-icon="🥤" type="button">
+          <span class="product-icon">🥤</span><span class="product-name">Korean Iced<br>Americano</span><span class="product-price">6,00 €</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="menu-section" id="shakes">
+      <div class="section-heading"><h2>Milk Shakes</h2><span>je 6,00 €</span></div>
+      <div class="product-grid">
+        <button class="product-card" data-name="Milk Shake · Vanille" data-price="6.00" data-icon="🥤" type="button">
+          <span class="product-icon">🥤</span><span class="product-name">Vanille</span><span class="product-price">6,00 €</span>
+        </button>
+        <button class="product-card" data-name="Milk Shake · Chocolate" data-price="6.00" data-icon="🍫" type="button">
+          <span class="product-icon">🍫</span><span class="product-name">Chocolate</span><span class="product-price">6,00 €</span>
+        </button>
+        <button class="product-card" data-name="Milk Shake · Strawberry" data-price="6.00" data-icon="🍓" type="button">
+          <span class="product-icon">🍓</span><span class="product-name">Strawberry</span><span class="product-price">6,00 €</span>
+        </button>
+        <button class="product-card" data-name="Milk Shake · Coffee" data-price="6.00" data-icon="☕" type="button">
+          <span class="product-icon">☕</span><span class="product-name">Coffee</span><span class="product-price">6,00 €</span>
+        </button>
+      </div>
+    </section>
+
+    <section class="menu-section" id="extras">
+      <div class="section-heading"><h2>Extras</h2><span>Zuschläge</span></div>
+      <div class="product-grid">
+        <button class="product-card" data-name="Milchalternative · Soja/Hafer" data-price="0.80" data-icon="🌾" type="button">
+          <span class="product-icon">🌾</span><span class="product-name">Soja / Hafer</span><span class="product-price">+ 0,80 €</span>
+        </button>
+        <button class="product-card" data-name="Flavour" data-price="1.00" data-icon="＋" type="button">
+          <span class="product-icon">＋</span><span class="product-name">Flavour</span><span class="product-price">+ 1,00 €</span>
+        </button>
+      </div>
+    </section>
+
+    <div class="bottom-spacer" aria-hidden="true"></div>
+  </main>
+
+  <footer class="total-bar">
+    <div>
+      <span>Gesamt</span>
+      <strong id="grandTotal">0,00 €</strong>
+    </div>
+    <button id="checkoutResetBtn" type="button">Bezahlt · Neu</button>
+  </footer>
+
+  <script src="js/rechner.js"></script>
+</body>
+</html>
