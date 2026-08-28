@@ -38,31 +38,20 @@
     render();
   }
 
-  function removeOne(key, trackHistory = false) {
+  function removeOne(key) {
     const item = state.items.get(key);
     if (!item) return;
 
     item.qty -= 1;
     if (item.qty <= 0) state.items.delete(key);
     else state.items.set(key, item);
-
-    if (trackHistory) state.history.push({ removed: key });
     render();
   }
 
   function undoLast() {
-    const last = state.history.pop();
-    if (!last) return;
-
-    if (typeof last === 'string') {
-      removeOne(last);
-    } else if (last.removed) {
-      const existing = state.items.get(last.removed);
-      if (existing) {
-        existing.qty += 1;
-        state.items.set(last.removed, existing);
-      }
-    }
+    const key = state.history.pop();
+    if (!key) return;
+    removeOne(key);
     render();
   }
 
@@ -77,7 +66,7 @@
     const totalQty = items.reduce((sum, item) => sum + item.qty, 0);
     const total = items.reduce((sum, item) => sum + item.price * item.qty, 0);
 
-    itemCount.textContent = `${totalQty} ${totalQty === 1 ? 'Artikel' : 'Artikel'}`;
+    itemCount.textContent = `${totalQty} Artikel`;
     grandTotal.textContent = euro.format(total);
     undoBtn.disabled = state.history.length === 0;
 
@@ -129,7 +118,7 @@
     const removeButton = event.target.closest('[data-remove-key]');
     if (removeButton) {
       const key = removeButton.dataset.removeKey;
-      removeOne(key, true);
+      removeOne(key);
     }
   });
 
